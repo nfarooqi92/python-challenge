@@ -31,7 +31,7 @@ with open(csvpath) as csvfile:
                 increase_month = row[0]
             elif change_profit < greatest_decrease:
                 greatest_decrease = change_profit
-                decerease_month = row[0]
+                decrease_month = row[0]
 
         last_profit = int(row[1])
          # The total number of months included in the dataset
@@ -40,15 +40,31 @@ with open(csvpath) as csvfile:
     # The net total amount of "Profit/Losses" over the entire period
         profit_loss = profit_loss + int(row[1])
 
-print(months) 
-print(profit_loss)
+print("Financial Analysis")
+print("----------------------------")
+print("Total Months:" + str(months))
+print("Total Revenue:" + str(profit_loss))
 
 # The average of the changes in "Profit/Losses" over the entire period
 average_change = (last_profit - first_profit)/ (months - 1)
-print(average_change)
+print("Average Change in Revenue: $" + str(average_change))
 
 # The greatest increase in profits (date and amount) over the entire period
-print(greatest_increase)
+print("Greatest Increase in Revenue: " + increase_month + " ($" + str(int(greatest_increase)) + ")")
+
 
 # The greatest decrease in losses (date and amount) over the entire period
-print(greatest_decrease)
+print("Greatest Decrease in Revenue: " + decrease_month + " ($" + str(int(greatest_decrease)) + ")")
+
+# Exporting results to a txt file
+output_file = os.path.join("PyBank Results.txt")
+
+with open(output_file, 'w', newline='') as file:
+    text = csv.writer(file)
+    text.writerow(["Financial Analysis"])
+    text.writerow(["----------------------------"])
+    text.writerow(["Total Months:" + str(months)])
+    text.writerow(["Total Revenue:" + str(profit_loss)])
+    text.writerow(["Average Change in Revenue: $" + str(average_change)])
+    text.writerow(["Greatest Increase in Revenue: " + increase_month + " ($" + str(int(greatest_increase)) + ")"])
+    text.writerow(["Greatest Decrease in Revenue: " + decrease_month + " ($" + str(int(greatest_decrease)) + ")"])
