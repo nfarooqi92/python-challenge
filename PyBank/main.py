@@ -34,7 +34,7 @@ with open(csvpath) as csvfile:
                 decrease_month = row[0]
 
         last_profit = int(row[1])
-         # The total number of months included in the dataset
+    # The total number of months included in the dataset
         months = months + 1
         print(row)
     # The net total amount of "Profit/Losses" over the entire period
@@ -56,7 +56,7 @@ print("Greatest Increase in Revenue: " + increase_month + " ($" + str(int(greate
 # The greatest decrease in losses (date and amount) over the entire period
 print("Greatest Decrease in Revenue: " + decrease_month + " ($" + str(int(greatest_decrease)) + ")")
 
-# Exporting results to a txt file
+# Export results to a new txt file
 output_file = os.path.join("PyBank Results.txt")
 
 with open(output_file, 'w', newline='') as file:
