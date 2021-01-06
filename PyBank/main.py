@@ -10,7 +10,6 @@ with open(csvpath) as csvfile:
     # CSV reader specifies delimiter and variable that holds contents
     csvreader = csv.reader(csvfile, delimiter=',')
 
-
     # Read the header row first (skip this step if there is now header)
     csv_header = next(csvreader)
     print(f"CSV Header: {csv_header}")
@@ -47,6 +46,8 @@ print("Total Revenue:" + str(profit_loss))
 
 # The average of the changes in "Profit/Losses" over the entire period
 average_change = (last_profit - first_profit)/ (months - 1)
+average_change = round(average_change,2)
+
 print("Average Change in Revenue: $" + str(average_change))
 
 # The greatest increase in profits (date and amount) over the entire period
@@ -63,8 +64,8 @@ with open(output_file, 'w', newline='') as file:
     text = csv.writer(file)
     text.writerow(["Financial Analysis"])
     text.writerow(["----------------------------"])
-    text.writerow(["Total Months:" + str(months)])
-    text.writerow(["Total Revenue:" + str(profit_loss)])
+    text.writerow(["Total Months: " + str(months)])
+    text.writerow(["Total Revenue: " + str(profit_loss)])
     text.writerow(["Average Change in Revenue: $" + str(average_change)])
     text.writerow(["Greatest Increase in Revenue: " + increase_month + " ($" + str(int(greatest_increase)) + ")"])
     text.writerow(["Greatest Decrease in Revenue: " + decrease_month + " ($" + str(int(greatest_decrease)) + ")"])
